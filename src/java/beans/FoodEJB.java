@@ -18,29 +18,45 @@ import javax.persistence.PersistenceUnit;
  */
 @Stateless
 public class FoodEJB {
-    
-    @PersistenceUnit EntityManagerFactory emf;
-    
-    public void altaUsers(User u) throws Eeeeerroooorr{
+
+    @PersistenceUnit
+    EntityManagerFactory emf;
+
+    public void altaUsers(User u) throws Eeeeerroooorr {
         EntityManager em = emf.createEntityManager();
         User tmp = em.find(User.class, u.getUsername());
-        if(tmp != null){
+        if (tmp != null) {
             em.close();
             throw new Eeeeerroooorr("Username ya existente");
         }
         em.persist(u);
         em.close();
     }
-    public void altaPlatos(Dish e) throws Eeeeerroooorr{
+
+    public void altaPlatos(Dish e) throws Eeeeerroooorr {
         EntityManager em = emf.createEntityManager();
         Dish aux = em.find(Dish.class, e.getName());
-        if(aux != null){
+        if (aux != null) {
             em.close();
-            throw  new Eeeeerroooorr("Plato ya existente");
+            throw new Eeeeerroooorr("Plato ya existente");
         }
         em.persist(e);
         em.close();
     }
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+
+    public User checkUser(String usu, String pass) throws Eeeeerroooorr {
+        EntityManager em = emf.createEntityManager();
+        User tmp = em.find(User.class, usu);
+        if (tmp != null) {
+            if (tmp.getPassword().equals(pass)) {
+            } else {
+                tmp = null;
+                throw new Eeeeerroooorr("Usuario/Contraseña Incorrecto");
+            }
+        } else {
+            throw new Eeeeerroooorr("Usuario/Contraseña Incorrecto");
+        }
+        em.close();
+        return tmp;
+    }
 }

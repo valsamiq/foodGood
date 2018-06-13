@@ -6,6 +6,8 @@
 package controller;
 
 import beans.FoodEJB;
+import entities.User;
+import exceptions.Eeeeerroooorr;
 import java.io.IOException;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -23,10 +25,19 @@ public class Login extends HttpServlet{
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        User tmp = null;
         //Check if user exists
-        request.getSession(true).setAttribute("username", username);
-        response.sendRedirect(request.getContextPath()+ "/validUser.jsp");
+        try{
+            tmp = foodEjb.checkUser(username,password);
+            request.getSession(true).setAttribute("user", tmp);
+//            request.setAttribute("status", "Exito al logear-se");
+            response.sendRedirect(request.getContextPath()+ "/validUser.jsp");
+        }catch(Eeeeerroooorr e){
+            request.setAttribute("status", e.getMessage());
+            request.getRequestDispatcher("/errorUser.jsp").forward(request, response);
         }
+        
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
