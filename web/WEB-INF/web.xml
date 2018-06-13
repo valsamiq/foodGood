@@ -5,12 +5,20 @@
         <servlet-class>controller.NewUser</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>NewRestaurant</servlet-name>
+        <servlet-class>controller.NewRestaurant</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>controller.Login</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>NewUser</servlet-name>
         <url-pattern>/NewUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewRestaurant</servlet-name>
+        <url-pattern>/NewRestaurant</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>

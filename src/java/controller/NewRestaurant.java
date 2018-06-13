@@ -6,7 +6,7 @@
 package controller;
 
 import beans.FoodEJB;
-import entities.User;
+import entities.Restaurant;
 import exceptions.Eeeeerroooorr;
 import java.io.IOException;
 import javax.ejb.EJB;
@@ -19,24 +19,23 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author daw2
  */
-public class Login extends HttpServlet{
+public class NewRestaurant extends HttpServlet{
     @EJB FoodEJB foodEjb;
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        User tmp = null;
-        //Check if user exists
+        String name = request.getParameter("name");
+        String city = request.getParameter("city");
+        String specialty = request.getParameter("specialty");
+        Restaurant r = new Restaurant(name, city, specialty);
         try{
-            tmp = foodEjb.checkUser(username,password);
-            request.getSession(true).setAttribute("user", tmp);
-                //request.setAttribute("status", "Exito al logear-se");
-            response.sendRedirect(request.getContextPath()+ "/validUser.jsp");
-        }catch(Eeeeerroooorr e){
-            request.setAttribute("status", e.getMessage());
-            request.getRequestDispatcher("/errorUser.jsp").forward(request, response);
+            foodEjb.altaRestaurantes(r);
+            request.setAttribute("status", "Restaurante añadido");
         }
-    }
+        catch(Eeeeerroooorr e){
+            request.setAttribute("status", e.getMessage());
+        }
+        request.getRequestDispatcher("/final.jsp").forward(request, response);
+     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

@@ -6,6 +6,7 @@
 package beans;
 
 import entities.Dish;
+import entities.Restaurant;
 import entities.User;
 import exceptions.Eeeeerroooorr;
 import javax.ejb.Stateless;
@@ -43,7 +44,18 @@ public class FoodEJB {
         em.persist(e);
         em.close();
     }
-
+    
+    public void altaRestaurantes(Restaurant r) throws Eeeeerroooorr{
+        EntityManager em = emf.createEntityManager();
+        Restaurant tmp = em.find(Restaurant.class, r.getName());
+        if(tmp != null){
+            em.close();
+            throw new Eeeeerroooorr("Restaurante ya existente");
+        }
+        em.persist(r);
+        em.close();
+    }
+    
     public User checkUser(String usu, String pass) throws Eeeeerroooorr {
         EntityManager em = emf.createEntityManager();
         User tmp = em.find(User.class, usu);
