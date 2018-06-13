@@ -61,6 +61,14 @@ public class Dish implements Serializable {
         this.name = name;
     }
 
+    public Dish(String name, String type, BigDecimal price, Restaurant restaurant) {
+        this.name = name;
+        this.type = type;
+        this.price = price;
+        this.restaurant = restaurant;
+    }
+    
+
     public Dish(String name, String type, BigDecimal price) {
         this.name = name;
         this.type = type;

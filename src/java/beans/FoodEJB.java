@@ -55,6 +55,11 @@ public class FoodEJB {
         em.persist(r);
         em.close();
     }
+    public Restaurant getRestByName(String name){
+        EntityManager em = emf.createEntityManager();
+        Restaurant tmp = em.find(Restaurant.class, name);
+        return tmp;
+    }
     
     public User checkUser(String usu, String pass) throws Eeeeerroooorr {
         EntityManager em = emf.createEntityManager();
