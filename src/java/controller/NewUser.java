@@ -11,6 +11,7 @@ import exceptions.Eeeeerroooorr;
 import java.io.IOException;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author daw2
  */
-public class newUser {
+public class NewUser extends HttpServlet{
     @EJB FoodEJB foodEjb;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -34,7 +35,8 @@ public class newUser {
         try{
             foodEjb.altaUsers(u);
             request.setAttribute("status", "Usuario Registrado");
-        }catch(Eeeeerroooorr e){
+        }
+        catch(Eeeeerroooorr e){
             request.setAttribute("status", e.getMessage());
         }
         request.getRequestDispatcher("/final.jsp").forward(request, response);
@@ -48,6 +50,7 @@ public class newUser {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
@@ -61,6 +64,7 @@ public class newUser {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
@@ -71,6 +75,7 @@ public class newUser {
      *
      * @return a String containing servlet description
      */
+    @Override
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>

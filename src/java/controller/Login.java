@@ -9,6 +9,7 @@ import beans.FoodEJB;
 import java.io.IOException;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author daw2
  */
-public class login {
+public class Login extends HttpServlet{
     @EJB FoodEJB foodEjb;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
@@ -26,7 +27,7 @@ public class login {
         request.getSession(true).setAttribute("username", username);
         response.sendRedirect(request.getContextPath()+ "/validUser.jsp");
         }
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -64,6 +65,4 @@ public class login {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
-

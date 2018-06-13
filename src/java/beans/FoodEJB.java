@@ -14,7 +14,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 
 /**
- *
  * @author daw2
  */
 @Stateless
@@ -32,7 +31,6 @@ public class FoodEJB {
         em.persist(u);
         em.close();
     }
-    
     public void altaPlatos(Dish e) throws Eeeeerroooorr{
         EntityManager em = emf.createEntityManager();
         Dish aux = em.find(Dish.class, e.getName());
