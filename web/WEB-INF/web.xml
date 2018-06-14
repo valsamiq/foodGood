@@ -28,6 +28,14 @@
         <servlet-name>DelDish</servlet-name>
         <servlet-class>controller.DelDish</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ModDish</servlet-name>
+        <servlet-class>controller.ModDish</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ModDishPrice</servlet-name>
+        <servlet-class>controller.ModDishPrice</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewUser</servlet-name>
         <url-pattern>/NewUser</url-pattern>
@@ -55,6 +63,14 @@
     <servlet-mapping>
         <servlet-name>DelDish</servlet-name>
         <url-pattern>/DelDish</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModDish</servlet-name>
+        <url-pattern>/ModDish</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModDishPrice</servlet-name>
+        <url-pattern>/ModDishPrice</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

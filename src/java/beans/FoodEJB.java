@@ -106,6 +106,13 @@ public class FoodEJB {
         em.remove(tmp);
         em.close();
     }
+    public void modDish(Dish d){
+        EntityManager em = emf.createEntityManager();
+        Dish tmp = em.find(Dish.class, d.getName());
+        tmp.setPrice(d.getPrice());
+        em.persist(tmp);
+        em.close();
+    }
     public User checkUser(String usu, String pass) throws Eeeeerroooorr {
         EntityManager em = emf.createEntityManager();
         User tmp = em.find(User.class, usu);
