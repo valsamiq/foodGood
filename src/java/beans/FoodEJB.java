@@ -10,6 +10,7 @@ import entities.Rate;
 import entities.Restaurant;
 import entities.User;
 import exceptions.Eeeeerroooorr;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -70,6 +71,20 @@ public class FoodEJB {
     public List<Dish> getAllDish(){
         return emf.createEntityManager().createNamedQuery("Dish.findAll").getResultList();
     }
+    public List<Dish> filterAllDish(String type){
+        List<Dish> allDish = getAllDish();
+        List<Dish> tmp = new ArrayList<>();
+        if(type.equalsIgnoreCase("all")){
+            return allDish;
+        } else{
+            for(Dish d : allDish){
+                if(d.getType().equalsIgnoreCase(type)){
+                    tmp.add(d);
+                }
+            }
+            return tmp;
+        }
+    }
     public User getUserByName(String name){
         EntityManager em = emf.createEntityManager();
         User tmp = em.find(User.class, name);
@@ -85,7 +100,6 @@ public class FoodEJB {
         Restaurant tmp = em.find(Restaurant.class, name);
         return tmp;
     }
-    
     public User checkUser(String usu, String pass) throws Eeeeerroooorr {
         EntityManager em = emf.createEntityManager();
         User tmp = em.find(User.class, usu);

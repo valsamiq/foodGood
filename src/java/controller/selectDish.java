@@ -7,6 +7,7 @@ package controller;
 
 import beans.FoodEJB;
 import entities.Dish;
+import exceptions.Eeeeerroooorr;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -15,26 +16,27 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.core.Response;
 
 /**
+ *
  * @author daw2
  */
-public class VerPlato extends HttpServlet {
+public class selectDish extends HttpServlet {
 @EJB FoodEJB foodEjb;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
+     *
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            List<Dish> filtDish = foodEjb.filterAllDish(request.getParameter("typs"));
-            request.setAttribute("filtDish", filtDish);
-            request.setAttribute("staus", "Listado de platos");
-            request.getRequestDispatcher("/dishList.jsp").forward(request, response);
+        List<Dish> allDish = foodEjb.getAllDish();
+        request.setAttribute("allDish", allDish);
+        request.setAttribute("staus", "Listado de platos");
+        request.getRequestDispatcher("/selectDishList.jsp").forward(request, response);
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

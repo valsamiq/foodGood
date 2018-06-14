@@ -11,16 +11,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>DishList</title>
+        <title>Dish List</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Lista de Platos</h1>
         <%
-        //String status=(String) request.getAttribute("status");
-        List<Dish> allDishes=(List<Dish>) request.getAttribute("allDish");
+        String status=(String) request.getAttribute("status");
+        List<Dish> filtDish=(List<Dish>) request.getAttribute("filtDish");
         %>
         <table>
-                <% for (Dish ad : allDishes) { %>
+                <% for (Dish ad : filtDish) { %>
                 <tr>
                     <td><%=ad.getName()%></td>
                     <td><%=ad.getType()%></td>

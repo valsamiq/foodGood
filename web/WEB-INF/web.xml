@@ -20,6 +20,10 @@
         <servlet-name>VerPlato</servlet-name>
         <servlet-class>controller.VerPlato</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>selectDish</servlet-name>
+        <servlet-class>controller.selectDish</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>NewUser</servlet-name>
         <url-pattern>/NewUser</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>VerPlato</servlet-name>
         <url-pattern>/VerPlato</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>selectDish</servlet-name>
+        <url-pattern>/selectDish</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
