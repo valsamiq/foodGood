@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Alta Valoracion</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Nueva Valoracion</h1>
+        <form method="POST" action="NewValor">
+            <p>Usuario:<input type="text" name="user"></p>
+            <p>Plato:<input type="text" name="dish"></p>
+            <p>Puntuacion:<input type="number" name="mark" min="0" max="10" required></p>
+            <p>Comentarios:<input type="text" name="comment" required></p>
+            <p><input type="submit" value="Alta"></p>
+        </form>
+    </body>
+</html>

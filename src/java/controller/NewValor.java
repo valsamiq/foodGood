@@ -6,35 +6,55 @@
 package controller;
 
 import beans.FoodEJB;
+import entities.Dish;
+import entities.Rate;
+import static entities.Rate_.date;
+import entities.Restaurant;
 import entities.User;
 import exceptions.Eeeeerroooorr;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Date;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author daw2
  */
-public class Login extends HttpServlet{
-    @EJB FoodEJB foodEjb;
-    
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        User tmp = null;
-        //Check if user exists
-        try{
-            tmp = foodEjb.checkUser(username,password);
-            request.getSession(true).setAttribute("user", tmp);
-                //request.setAttribute("status", "Exito al logear-se");
-            response.sendRedirect(request.getContextPath()+ "/validUser.jsp");
+@WebServlet(name = "NewValor", urlPatterns = {"/NewValor"})
+public class NewValor extends HttpServlet {
+@EJB FoodEJB foodEjb;
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+        int mark = Integer.parseInt(request.getParameter("mark"));
+        String comment = request.getParameter("comment");
+        Date dt = new Date();
+        
+        Dish d = foodEjb.getDishByName(request.getParameter("dish"));
+        User u  = foodEjb.getUserByName(request.getParameter("user"));
+        //User u = (User) HttpSession.getAttribute("user", tmp);
+        
+        Rate rt = new Rate(dt, mark, comment, u, d);
+        try {
+            foodEjb.altaValoras(rt);
+            request.setAttribute("status", "Plato Valorado");
         }catch(Eeeeerroooorr e){
             request.setAttribute("status", e.getMessage());
-            request.getRequestDispatcher("/errorUser.jsp").forward(request, response);
         }
+        request.getRequestDispatcher("/final.jsp").forward(request, response);
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

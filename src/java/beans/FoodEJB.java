@@ -6,6 +6,7 @@
 package beans;
 
 import entities.Dish;
+import entities.Rate;
 import entities.Restaurant;
 import entities.User;
 import exceptions.Eeeeerroooorr;
@@ -54,6 +55,26 @@ public class FoodEJB {
         }
         em.persist(r);
         em.close();
+    }
+    public void altaValoras(Rate r) throws Eeeeerroooorr{
+        EntityManager em = emf.createEntityManager();
+        //Rate tmp = em.find(Rate.class, r.getName());
+        //if(tmp != null){
+        //    em.close();
+        //    throw new Eeeeerroooorr("Plato/Usu ya valorado");
+        //}
+        em.persist(r);
+        em.close();
+    }
+    public User getUserByName(String name){
+        EntityManager em = emf.createEntityManager();
+        User tmp = em.find(User.class, name);
+        return tmp;
+    }
+    public Dish getDishByName(String name){
+        EntityManager em = emf.createEntityManager();
+        Dish tmp = em.find(Dish.class, name);
+        return tmp;
     }
     public Restaurant getRestByName(String name){
         EntityManager em = emf.createEntityManager();

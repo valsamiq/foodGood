@@ -71,6 +71,14 @@ public class Rate implements Serializable {
         this.idrate = idrate;
     }
 
+    public Rate(Date date, int mark, String comment, User user, Dish dish) {
+        this.date = date;
+        this.mark = mark;
+        this.comment = comment;
+        this.user = user;
+        this.dish = dish;
+    }
+
     public Rate(Integer idrate, Date date, int mark) {
         this.idrate = idrate;
         this.date = date;
