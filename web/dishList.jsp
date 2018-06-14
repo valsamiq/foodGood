@@ -29,5 +29,8 @@
                 </tr>
                 <% }%>
         </table>
+        <form action="index.html">
+            <input type="submit" value="Menu Principal"/>
+        </form>
     </body>
 </html>
