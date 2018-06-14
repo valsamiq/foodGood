@@ -100,6 +100,12 @@ public class FoodEJB {
         Restaurant tmp = em.find(Restaurant.class, name);
         return tmp;
     }
+    public void delDishByName(String dish){
+        EntityManager em = emf.createEntityManager();
+        Dish tmp = em.find(Dish.class, dish);
+        em.remove(tmp);
+        em.close();
+    }
     public User checkUser(String usu, String pass) throws Eeeeerroooorr {
         EntityManager em = emf.createEntityManager();
         User tmp = em.find(User.class, usu);
