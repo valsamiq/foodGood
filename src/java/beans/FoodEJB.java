@@ -10,6 +10,7 @@ import entities.Rate;
 import entities.Restaurant;
 import entities.User;
 import exceptions.Eeeeerroooorr;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -65,6 +66,9 @@ public class FoodEJB {
         //}
         em.persist(r);
         em.close();
+    }
+    public List<Dish> getAllDish(){
+        return emf.createEntityManager().createNamedQuery("Dish.findAll").getResultList();
     }
     public User getUserByName(String name){
         EntityManager em = emf.createEntityManager();

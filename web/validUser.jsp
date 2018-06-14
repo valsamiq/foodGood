@@ -12,10 +12,20 @@
         <title>Validacion de usuario</title>
     </head>
     <body>
-        <%
-            String username = (String) session.getAttribute("username");
+        <%String status = (String) request.getAttribute("status");
+            User u = (User) session.getAttribute("user");
+            String username = u.getName();
+            int type = u.getType();
         %>
-            <h1>Welcome, <%=username%>!</h1>
+        <h3>Welcome, <%=username%></h3>
+        <% if (type == 1) { %>
+        UserType=Admin
+        <form action="altaRestaurante.html">
+            <input type="submit" value="Nuevo Restaurante">
+        </form>
+        <%  } else {%>
+        UserType=User
+        <%}%>
         <form action="index.html">
             <input type="submit" value="Menu Principal"/>
         </form>
